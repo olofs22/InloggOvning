@@ -34,7 +34,24 @@ namespace InloggOvning
                     Thread.Sleep(25);
                 }
 
-                userPassword = Console.ReadLine();
+                userPassword = "";
+
+                while (true)
+                {
+                    var key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Enter) break;
+                    if (key.Key == ConsoleKey.Backspace && userPassword.Length > 0)
+                    {
+                        userPassword = userPassword[..^1];
+                        Console.Write("\b \b");
+                    }
+                    else if (!char.IsControl(key.KeyChar))
+                    {
+                        userPassword += key.KeyChar;
+                        Console.Write("*");
+                    }
+                }
+                Console.WriteLine();
 
                 if (userPassword.Length >= 6 &&
                     userPassword.Any(char.IsUpper) &&
@@ -55,9 +72,6 @@ namespace InloggOvning
                     
                 }
             }
-            
-           
-            
         }
         public void Login()
         {
@@ -77,7 +91,26 @@ namespace InloggOvning
                 Thread.Sleep(25);
             }
 
-            userInputPassWord = Console.ReadLine();
+            userInputPassWord = "";
+
+            while (true)
+            {
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Enter) break;
+                if (key.Key == ConsoleKey.Backspace && userInputPassWord.Length > 0)
+                {
+                    userInputPassWord = userInputPassWord[..^1];
+                    Console.Write("\b \b");
+                }
+                else if (!char.IsControl(key.KeyChar))
+                {
+                    userInputPassWord += key.KeyChar;
+                    Console.Write("*");
+                }
+            }
+            Console.WriteLine();
+
+            
 
             if (userInputUserName == userName && userPassword == userInputPassWord)
             {
@@ -92,13 +125,11 @@ namespace InloggOvning
 
                 LoggedIn = true;
 
-                LogInAnimation();
-
-                
+                Messages_animation.LogInAnimation();
             }
             else
             {
-                string textFelAL = "Felaktigt användarnamn eller lösenord";
+                string textFelAL = "\nFelaktigt användarnamn eller lösenord";
 
                 foreach (char c in textFelAL)
                 {
@@ -107,16 +138,5 @@ namespace InloggOvning
                 }
             }
         }
-        public void LogInAnimation()
-        {
-            string[] animation = { "|", "/", "-", "\\" };
-            for (int i = 0; i < 1000; i++)
-            {
-                Console.Write("\r\n" + animation[i % animation.Length] + " ");
-                Thread.Sleep(150); // liten paus så man ser rörelsen
-            }
-            Console.Write("\r"); // rensa raden
-        }
-       
     }
 }

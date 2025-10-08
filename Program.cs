@@ -4,6 +4,8 @@
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             bool progRun = true;
 
             MenuHelper menuHelper = new MenuHelper();
@@ -28,10 +30,9 @@
                         break;
                     case "C":
                         progRun = false;
-                        Console.WriteLine("Välkommen åter!");
+                        Messages_animation.WelcomeBack();
                         break;
                 }
-            
             }
         }
     }
