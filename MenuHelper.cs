@@ -8,10 +8,8 @@ namespace InloggOvning
 {
     public class MenuHelper
     {
-       
-
          public void Menu()
-        {
+         {
             string text = "\nVälkommen, vänligen registrera dig eller logga in!";
             foreach (char c in text)
             {
@@ -36,11 +34,6 @@ namespace InloggOvning
                 Console.Write(c);
                 Thread.Sleep(25);
             }
-
-
-
-             
-        }
-
+         }
     }
 }
